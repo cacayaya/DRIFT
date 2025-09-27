@@ -29,13 +29,13 @@ We provide the user satisified/dissatisfied chat data (SAT/DSAT) we used from [W
 
 We also curate a DSAT->SAT seed set (491 pairs) from WildFeedback, where a dissatisfied user turn (DSAT) is followed by a revised model response that satisfies the user (SAT). Each pair provides a natural preference: the DSAT response fails to meet expectations, while the subsequent SAT response is preferred. We provide this seed data in the `./data/seed-data`.
 
-To generate drift preference data, run:
+To generate drift preference data for iterative training, run:
 ```bash
 CUDA_VISIBLE_DEVICES=0 python gen-drift.py \
     --model_name Qwen/Qwen2.5-7B-Instruct-seed \
     --input_file ./data/dsat_data.jsonl
 ```
-This will using provided model to generate the chosen responses and paired with DSAT response from the real-world chat.
+This will use provided model to generate the chosen responses and paired with DSAT response from the real-world chat.
 
 For new iteration, simply change the model for current iteration: 
 ```bash
@@ -48,6 +48,7 @@ CUDA_VISIBLE_DEVICES=0 python gen-drift.py \
 After generating preference data, you can use the Alignment Handbook for DPO training. And you can find corresponding training configs in `./configs`
 
 ## Evaluation
+
 For evaluation, we use WildBench and AlpacaEval2. WildBench is built from challenging ChatGPT-human user queries in WildChat-1M, making it well suited for assessing our method for real-world performance. 
 - [WildBench](https://github.com/allenai/WildBench)
 - [AlpacaEval2](https://github.com/tatsu-lab/alpaca_eval)
