@@ -29,6 +29,8 @@ We provide the user satisified/dissatisfied chat data (SAT/DSAT) we used from [W
 
 We also curate a DSAT->SAT seed set (491 pairs) from WildFeedback, where a dissatisfied user turn (DSAT) is followed by a revised model response that satisfies the user (SAT). Each pair provides a natural preference: the DSAT response fails to meet expectations, while the subsequent SAT response is preferred. We provide this seed data in the `./data/seed-data`.
 
+All data can also be found at Huggingface: [DRIFT Collection](https://huggingface.co/collections/AmberYifan/drift-68e5cbfbc1b3ed9bb161b6d5).
+
 To generate drift preference data for iterative training, run:
 ```bash
 CUDA_VISIBLE_DEVICES=0 python gen-drift.py \
